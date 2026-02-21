@@ -12,7 +12,7 @@ const rooms = [
     title: 'Executive Suite',
     description: 'An elevated stay with a lounge area, premium bedding, and curated amenities.',
     price: 'From $145 / night',
-    image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1400&q=80'
+    image: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1400&q=80'
   },
   {
     title: 'Family Courtyard Room',
@@ -24,19 +24,19 @@ const rooms = [
     title: 'Signature Honeymoon Suite',
     description: 'Romantic ambiance with scenic views and special in-room hospitality touches.',
     price: 'From $175 / night',
-    image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1400&q=80'
+    image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1400&q=80'
   },
   {
     title: 'Country View Room',
     description: 'A restful room with warm interiors and panoramic countryside scenery.',
     price: 'From $105 / night',
-    image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1400&q=80'
+    image: 'https://images.unsplash.com/photo-1598928636135-d146006ff4be?auto=format&fit=crop&w=1400&q=80'
   },
   {
     title: 'Private Terrace Suite',
     description: 'Large suite with dedicated terrace space ideal for longer relaxed stays.',
     price: 'From $160 / night',
-    image: 'https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=1400&q=80'
+    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1400&q=80'
   }
 ];
 
