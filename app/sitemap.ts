@@ -5,7 +5,10 @@ import { detailedRooms } from '@/app/rooms/data';
 import { services } from '@/app/services/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kiasili-ventures.com';
+  const siteUrl =
+    process.env.SITE_URL ??
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    'https://kiasili-ventures.com';
   const now = new Date();
 
   const routes = ['', '/rooms', '/gallery', '/amenities', '/contact'];
