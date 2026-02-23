@@ -1,37 +1,7 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import Reveal from '@/components/Reveal';
-
-const amenities = [
-  {
-    icon: 'POOL',
-    title: 'Swimming Pool',
-    description: 'Relax by the poolside with sun loungers, refreshments, and peaceful views.'
-  },
-  {
-    icon: 'DINE',
-    title: 'Dining & Bar',
-    description: 'Fresh local cuisine, continental favorites, and a cozy evening lounge bar.'
-  },
-  {
-    icon: 'EVENT',
-    title: 'Events & Weddings',
-    description: 'Flexible indoor and outdoor venues for celebrations, conferences, and retreats.'
-  },
-  {
-    icon: 'WIFI',
-    title: 'High-Speed Wi-Fi',
-    description: 'Reliable connectivity throughout guest rooms, event areas, and lounge spaces.'
-  },
-  {
-    icon: 'PARK',
-    title: 'Ample Parking',
-    description: 'Secure on-site parking with convenient access for private and group travel.'
-  },
-  {
-    icon: 'WELL',
-    title: 'Wellness Spaces',
-    description: 'Quiet lawns and serene corners for yoga, meditation, and restorative downtime.'
-  }
-];
+import { amenities } from '@/app/amenities/data';
 
 export default function AmenitiesPage() {
   return (
@@ -49,12 +19,30 @@ export default function AmenitiesPage() {
         {/* Amenity cards */}
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {amenities.map((amenity) => (
-            <Reveal key={amenity.title} className="rounded-3xl border border-stoneWarm-200 bg-white p-6 shadow-soft dark:border-zinc-800 dark:bg-zinc-900">
-              <span className="inline-flex rounded-full bg-stoneWarm-100 px-3 py-1 text-xs font-bold tracking-wide text-oliveMuted-600 dark:bg-zinc-800 dark:text-stoneWarm-200" aria-hidden>
-                {amenity.icon}
-              </span>
-              <h2 className="mt-4 font-heading text-2xl">{amenity.title}</h2>
-              <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">{amenity.description}</p>
+            <Reveal
+              key={amenity.title}
+              className="relative min-h-64 overflow-hidden rounded-3xl border border-stoneWarm-200 shadow-soft dark:border-zinc-800"
+            >
+              <Image
+                src={amenity.gallery[0]}
+                alt={amenity.title}
+                fill
+                className="object-cover blur-[2px] scale-105"
+              />
+              <div className="absolute inset-0 bg-black/20" />
+              <Link href={`/amenities/${amenity.slug}`} className="relative block p-6 text-white">
+                <span
+                  className="inline-flex rounded-full bg-white/20 px-3 py-1 text-xs font-bold tracking-wide text-stoneWarm-100"
+                  aria-hidden
+                >
+                  {amenity.icon}
+                </span>
+                <h2 className="mt-4 font-heading text-2xl">{amenity.title}</h2>
+                <p className="mt-2 text-sm text-stoneWarm-100">{amenity.description}</p>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-stoneWarm-100/90">
+                  Tap to view details
+                </p>
+              </Link>
             </Reveal>
           ))}
         </div>

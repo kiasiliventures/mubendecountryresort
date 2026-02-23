@@ -1,40 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
-
-const highlights = [
-  {
-    title: 'Sunset Garden Walks',
-    body: 'Explore landscaped paths and serene viewpoints around the resort grounds.'
-  },
-  {
-    title: 'Farm-to-Table Dining',
-    body: 'Enjoy seasonal menus inspired by local produce and regional flavor.'
-  },
-  {
-    title: 'Private Event Spaces',
-    body: 'Host weddings, retreats, and celebrations in elegant indoor and outdoor venues.'
-  },
-  {
-    title: 'Quiet Wellness Moments',
-    body: 'Recharge with calm lounge areas, sunrise yoga lawns, and restorative atmosphere.'
-  }
-];
-
-const services = [
-  {
-    title: 'Poolside Leisure',
-    image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=900&q=80'
-  },
-  {
-    title: 'Signature Dining',
-    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80'
-  },
-  {
-    title: 'Garden Escapes',
-    image: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=900&q=80'
-  }
-];
+import { experiences } from '@/app/experiences/data';
+import { services } from '@/app/services/data';
 
 const galleryPreview = [
   'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=80',
@@ -86,16 +54,26 @@ export default function HomePage() {
       </section>
 
       {/* Experiences / highlights cards */}
-      <section className="section-space">
+      <section id="experiences-highlights" className="section-space">
         <div className="section-shell">
           <Reveal>
             <h2 className="font-heading text-3xl sm:text-4xl">Experiences & Highlights</h2>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {highlights.map((item) => (
-              <Reveal key={item.title} className="rounded-3xl border border-stoneWarm-200 bg-white p-5 shadow-soft dark:border-zinc-800 dark:bg-zinc-900">
-                <h3 className="font-heading text-xl">{item.title}</h3>
-                <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">{item.body}</p>
+            {experiences.map((item) => (
+              <Reveal
+                key={item.title}
+                className="relative min-h-56 overflow-hidden rounded-3xl border border-stoneWarm-200 shadow-soft dark:border-zinc-800"
+              >
+                <Image src={item.image} alt={item.title} fill className="object-cover blur-[2px] scale-105" />
+                <div className="absolute inset-0 bg-black/0" />
+                <Link href={`/experiences/${item.slug}`} className="relative block p-5 text-white">
+                  <h3 className="font-heading text-xl">{item.title}</h3>
+                  <p className="mt-3 text-sm text-stoneWarm-100">{item.body}</p>
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.15em] text-stoneWarm-100/90">
+                    Tap to view details
+                  </p>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -103,7 +81,7 @@ export default function HomePage() {
       </section>
 
       {/* Circular service visuals */}
-      <section className="section-space bg-stoneWarm-100/60 dark:bg-zinc-900/40">
+      <section id="services" className="section-space bg-stoneWarm-100/60 dark:bg-zinc-900/40">
         <div className="section-shell">
           <Reveal>
             <h2 className="font-heading text-3xl sm:text-4xl">Services</h2>
@@ -111,16 +89,21 @@ export default function HomePage() {
           <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <Reveal key={service.title} className="text-center">
-                <div className="mx-auto h-52 w-52 overflow-hidden rounded-full border-4 border-stoneWarm-200 shadow-soft dark:border-zinc-700">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    width={600}
-                    height={600}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <h3 className="mt-5 font-heading text-2xl">{service.title}</h3>
+                <Link href={`/services/${service.slug}`} className="group block">
+                  <div className="mx-auto h-52 w-52 overflow-hidden rounded-full border-4 border-stoneWarm-200 shadow-soft dark:border-zinc-700">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      width={600}
+                      height={600}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <h3 className="mt-5 font-heading text-2xl">{service.title}</h3>
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.15em] text-oliveMuted-600">
+                    Tap to view details
+                  </p>
+                </Link>
               </Reveal>
             ))}
           </div>

@@ -1,46 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Reveal from '@/components/Reveal';
-
-const rooms = [
-  {
-    title: 'Garden Deluxe Room',
-    description: 'Spacious comfort with a private balcony overlooking landscaped gardens.',
-    price: 'From $95 / night',
-    image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    title: 'Executive Suite',
-    description: 'An elevated stay with a lounge area, premium bedding, and curated amenities.',
-    price: 'From $145 / night',
-    image: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    title: 'Family Courtyard Room',
-    description: 'Comfortable multi-bed layout designed for shared travel and family retreats.',
-    price: 'From $125 / night',
-    image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    title: 'Signature Honeymoon Suite',
-    description: 'Romantic ambiance with scenic views and special in-room hospitality touches.',
-    price: 'From $175 / night',
-    image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    title: 'Country View Room',
-    description: 'A restful room with warm interiors and panoramic countryside scenery.',
-    price: 'From $105 / night',
-    image: 'https://images.unsplash.com/photo-1598928636135-d146006ff4be?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    title: 'Private Terrace Suite',
-    description: 'Large suite with dedicated terrace space ideal for longer relaxed stays.',
-    price: 'From $160 / night',
-    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1400&q=80'
-  }
-];
+import { detailedRooms, rooms } from '@/app/rooms/data';
 
 export default function RoomsPage() {
+  const detailedRoomSlugs = new Set(detailedRooms.map((room) => room.slug));
+
   return (
     <section className="section-space">
       <div className="section-shell">
@@ -64,6 +29,14 @@ export default function RoomsPage() {
                 <h2 className="font-heading text-2xl">{room.title}</h2>
                 <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">{room.description}</p>
                 <p className="mt-4 text-sm font-semibold text-oliveMuted-600 dark:text-stoneWarm-200">{room.price}</p>
+                {detailedRoomSlugs.has(room.slug) && (
+                  <Link
+                    href={`/rooms/${room.slug}`}
+                    className="mt-4 inline-flex rounded-full border border-oliveMuted-500 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-oliveMuted-600 transition hover:bg-oliveMuted-500 hover:text-white"
+                  >
+                    View Details
+                  </Link>
+                )}
               </div>
             </Reveal>
           ))}
