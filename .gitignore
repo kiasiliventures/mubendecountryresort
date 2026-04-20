@@ -25,3 +25,10 @@ pnpm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OpenNext
+.open-next
+.dev.vars
+.wrangler
+future-cloudflare-migration.md
+
